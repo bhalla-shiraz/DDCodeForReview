@@ -24,9 +24,12 @@ class RoomSelectionPanel extends Component {
    }
 
    componentDidMount() {
-      setInterval(() => this.updateLoginTime(), 60000);
+      this.loadInterval = setInterval(() => this.updateLoginTime(), 60000);
    }
-
+   componentWillUnmount () {
+      this.loadInterval && clearInterval(this.loadInterval);
+      this.loadInterval = false;
+   }
    selectRoom(newRoom) {
       const { updateRoom } = this.props
       updateRoom({
