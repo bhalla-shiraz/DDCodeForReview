@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import cn from 'classnames'
 import styles from './styles.js'
 import JoinButton from './joinButton'
 import {
