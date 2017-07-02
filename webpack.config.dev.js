@@ -23,6 +23,17 @@ export default {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ],
+  resolve: {
+    root: path.resolve(__dirname),
+    alias: {
+      pages: path.resolve(__dirname, 'src/pages'),
+      actions: path.resolve(__dirname, 'src/redux/actions'),
+      reduxConstants: path.resolve(__dirname, 'src/redux/constants'),
+      constants: path.resolve(__dirname, 'src/constants'),
+      services: path.resolve(__dirname, 'src/services'),
+    },
+    extensions: ['', '.js', '.jsx']
+   },
   module: {
     loaders: [
       {test: /\.js$/, include: path.join(__dirname, 'src'), loaders: ['babel']},

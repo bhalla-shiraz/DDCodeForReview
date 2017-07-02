@@ -1,5 +1,5 @@
 import { browserHistory } from 'react-router'
-import { CHANGE_PATH } from '../constants/navigate'
+import { CHANGE_PATH } from 'reduxConstants/navigate'
 
 export const go = (path) => {
   browserHistory.push(path)
