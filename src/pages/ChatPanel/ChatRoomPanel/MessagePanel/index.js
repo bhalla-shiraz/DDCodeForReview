@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import MessageBox from './MessageBox'
@@ -22,7 +22,7 @@ class MessagePanel extends Component {
      this.scrollToBottom();
    }
    render() {
-      const { messageDataList, channel, username } = this.props
+      const { messageDataList, username } = this.props
       return (
          <div
             style={styles.messagePanel}
@@ -40,4 +40,8 @@ const mapStateToProps = (state) => ({
    username: state.loginData.user
 })
 
+MessagePanel.propTypes = {
+   messageDataList: PropTypes.array.isRequired,
+   username: PropTypes.string.isRequired,
+}
 export default connect(mapStateToProps, () => ({}))(MessagePanel)

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import UserInfoPanel from './UserInfoPanel'
 import RoomList from './RoomList'
@@ -23,12 +23,25 @@ class RoomSelectionPanel extends Component {
       this.setState({timeSinceLoggedIn: diff})
    }
 
+   updateMessages() {
+      const { updateRoom, selectedRoom, roomList } = this.props
+      updateRoom({
+         id: selectedRoom,
+         name: roomList[selectedRoom].name
+      })
+   }
+
    componentDidMount() {
       this.loadInterval = setInterval(() => this.updateLoginTime(), 60000);
+      this.loadMessages = setInterval(() => this.updateMessages(), 1000);
    }
+
    componentWillUnmount () {
       this.loadInterval && clearInterval(this.loadInterval);
       this.loadInterval = false;
+      this.loadMessages && clearInterval(this.loadMessages);
+      this.loadMessages = false;
+
    }
    selectRoom(newRoom) {
       const { updateRoom } = this.props
@@ -61,4 +74,13 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
    updateRoom
 }
+
+RoomSelectionPanel.propTypes = {
+   loginTime: PropTypes.number,
+   updateRoom: PropTypes.func,
+   user: PropTypes.string,
+   roomList: PropTypes.array,
+   selectedRoom: PropTypes.number,
+}
+
 export default connect(mapStateToProps, mapDispatchToProps)(RoomSelectionPanel)
