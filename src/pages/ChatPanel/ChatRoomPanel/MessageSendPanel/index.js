@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import styles from './styles.js'
 import SendButton from './SendButton'
@@ -29,11 +29,14 @@ class MessageSendPanel extends Component {
       const emptyMessage = !message.match(/\S/)
 
       if(key === ENTER) {
-         if(shiftKey) {
-            this.message.value = message + '\n'
-         } else {
-            this.sendMessage()
+         if(!emptyMessage) {
+            if(shiftKey) {
+               this.message.value = message + '\n'
+            } else {
+               this.sendMessage()
+            }
          }
+
          event.preventDefault()
       }
 
@@ -65,6 +68,13 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
    sendMessage
+}
+
+MessageSendPanel.propTypes = {
+   user: PropTypes.string,
+   roomId: PropTypes.number,
+   sendMessage: PropTypes.func,
+   roomName: PropTypes.string,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessageSendPanel)
