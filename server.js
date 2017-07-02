@@ -28,6 +28,14 @@ const database = [
   { name: 'Coffee Chats', id: 1, users: ['Abdul'], messages: [{name: 'Abdul', message: 'ayy'}]}
 ]
 
+const profiles = {
+   s: {
+      name: 'Shiraz',
+      age: 24,
+      pic: 'https://s3.amazonaws.com/37assets/svn/1065-IMG_2529.jpg',
+      phoneNumber: '',
+   }
+}
 
 // Utility functions
 const findRoom = (roomId) => {
@@ -69,6 +77,30 @@ router.get('/rooms/:roomId', function(req, res) {
     res.json({name: room.name, id: room.id, users: room.users})
   }
 })
+
+
+const updateProfile = (user) => {
+   profiles[user.name] = {
+      age: user.age
+   }
+}
+
+
+router.route('/profile/:username')
+   .get((req, res) => {
+      res.send(profiles[req.params.username])
+   })
+   .post((req, res) => {
+      updateProfile({
+         name: req.params.username,
+         age: req.body.age,
+         pic: req.body.pic,
+
+      })
+      console.log('Response:',{message: 'OK!'})
+      res.json({message: 'OK!'})
+   })
+
 
 router.route('/rooms/:roomId/messages')
   .get(function(req, res) {
