@@ -7,6 +7,9 @@ import {
    hintText
 } from '../../../../constants/messageSendPanel'
 import {
+   ENTER
+} from '../../../../constants/events'
+import {
    sendMessage
 } from '../../../../redux/actions/roomDetails'
 
@@ -19,15 +22,36 @@ class MessageSendPanel extends Component {
          this.message.value = ''
       }
    }
+
+   onKeyPress(event) {
+      const { key, shiftKey } = event
+      const message = this.message.value
+      const emptyMessage = !message.match(/\S/)
+
+      if(key === ENTER) {
+         if(shiftKey) {
+            this.message.value = message + '\n'
+         } else {
+            this.sendMessage()
+         }
+         event.preventDefault()
+      }
+
+
+   }
+
    render() {
       return (
          <div style={styles.sendContainer}>
-            <input
+            <textarea
                style={styles.messageTextField}
                placeholder={hintText}
                ref={(elem) => this.message = elem}
+               onKeyPress={(event) => this.onKeyPress(event)}
             />
-         <SendButton label={sendButtonLabel} sendMessage={() => this.sendMessage()}/>
+         <SendButton
+            label={sendButtonLabel}
+            sendMessage={() => this.sendMessage()}/>
          </div>
       )
    }

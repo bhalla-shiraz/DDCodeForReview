@@ -17,7 +17,9 @@ class MessagePanel extends Component {
    componentDidMount() {
      this.scrollToBottom();
    }
-
+   shouldComponentUpdate(prevProps) {
+      return !(JSON.stringify(prevProps.messageDataList) === JSON.stringify(this.props.messageDataList))
+   }
    componentDidUpdate() {
      this.scrollToBottom();
    }

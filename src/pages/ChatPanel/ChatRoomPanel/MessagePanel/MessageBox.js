@@ -6,7 +6,10 @@ const MessageBox = ({messageData, username}) => {
    return (
       <div style={styles.messageContainer}>
          <div style={(selfWritten) ? styles.messageTextFromUser : styles.messageText}>
-            {messageData.message}
+            {messageData.message
+               .split('\n')
+               .map((messageLine, key) => (<span key={key}>{messageLine}<br/></span>))
+            }
          </div>
          <div style={styles.messageAuthor}>
             {(selfWritten)? '' : messageData.name}

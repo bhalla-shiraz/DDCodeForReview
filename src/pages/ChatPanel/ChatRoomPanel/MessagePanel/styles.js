@@ -11,7 +11,8 @@ export default {
       color: 'grey'
    },
    messageContainer: {
-      padding: '2%'
+      padding: '2%',
+      overflow: 'auto'
    },
    messageText: {
       background: 'white',

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import styles from './styles.js'
 import JoinButton from './joinButton'
@@ -6,6 +6,9 @@ import {
    joinButtonLabel,
    hintText
 } from '../../constants/Welcome'
+import {
+   ENTER
+} from '../../constants/events'
 import { login } from '../../redux/actions/loginData'
 
 class Welcome extends Component {
@@ -13,6 +16,12 @@ class Welcome extends Component {
       super(props)
       this.state = {
          errorText: ""
+      }
+   }
+
+   onKeyPress({key}) {
+      if(key === ENTER) {
+         this.login()
       }
    }
 
@@ -24,13 +33,19 @@ class Welcome extends Component {
    render() {
       const { errorText } = this.state
       return (
-         <div style={styles.joinContainer}>
+         <div
+            style={styles.joinContainer}
+            >
             <input
                style={styles.usernameField}
                placeholder={hintText}
+               onKeyPress={(event) => this.onKeyPress(event)}
                ref={(elem) => this.username = elem}
             />
-         <JoinButton label={joinButtonLabel} onClick={() => this.login()}/>
+         <JoinButton
+            label={joinButtonLabel}
+            onClick={() => this.login()}
+            />
          <div style={styles.errorText}>{errorText}</div>
          </div>
       )
@@ -40,6 +55,10 @@ class Welcome extends Component {
 const mapStateToProps = () => ({})
 const mapDispatchToProps = {
    login
+}
+
+Welcome.propTypes = {
+   login: PropTypes.string,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Welcome)
