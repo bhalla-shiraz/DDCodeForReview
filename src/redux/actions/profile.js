@@ -1,5 +1,6 @@
 import { getProfile } from 'services/profile'
 import { updateProfile } from 'services/profile'
+import { go } from 'actions/navigate'
 import {
    FETCHING_PROFILE_INFORMATION,
    UPDATE_PROFILE_INFORMATION,
@@ -37,6 +38,7 @@ export const updateProfileInformation = (username, data) => {
          updateProfile(username, data).then((response) => {
             if(response.status == 200) {
                dispatch(getProfileInformation(username))
+               dispatch(go('/chat'))
             } else {
                console.log("error");
             }

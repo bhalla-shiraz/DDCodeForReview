@@ -58,7 +58,7 @@ const mapDispatchToProps = {
 }
 
 Welcome.propTypes = {
-   login: PropTypes.string,
+   login: PropTypes.func,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Welcome)

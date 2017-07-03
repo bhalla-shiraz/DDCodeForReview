@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { updateRoom } from 'actions/roomDetails'
+import Profile from './Profile'
 import UserInfoPanel from './UserInfoPanel'
 import RoomList from './RoomList'
-import { updateRoom } from 'actions/roomDetails'
 import { go } from 'actions/navigate'
 import styles from './styles'
 
@@ -54,11 +55,13 @@ class RoomSelectionPanel extends Component {
 
    render() {
       // let roomList = ["Business", "Design", "Analytics", "Engineering", "HR", "Operations"]
-      const { user, selectedRoom, roomList } = this.props
+      const { user, selectedRoom, roomList, go, url } = this.props
       const { timeSinceLoggedIn } = this.state
+      console.log(url);
       return (
          <div style={styles.roomSelectionPanel}>
-            <UserInfoPanel viewProfile={go} user={user} timeOnline={timeSinceLoggedIn}/>
+            {(url && url.includes('profile')) ? <Profile /> : ''}
+            <UserInfoPanel viewProfile={() => go('/chat/profile')} user={user} timeOnline={timeSinceLoggedIn}/>
             <RoomList roomList={roomList} selectedRoom={selectedRoom} selectRoom={(event) => this.selectRoom(event)}/>
          </div>
       )
@@ -70,6 +73,7 @@ const mapStateToProps = (state) => ({
    loginTime: state.loginData.time,
    selectedRoom: state.roomDetails.room,
    roomList: state.roomList,
+   url: state.navigate.path,
 })
 
 const mapDispatchToProps = {
@@ -83,6 +87,8 @@ RoomSelectionPanel.propTypes = {
    user: PropTypes.string,
    roomList: PropTypes.array,
    selectedRoom: PropTypes.number,
+   go: PropTypes.func,
+   url: PropTypes.string,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomSelectionPanel)
