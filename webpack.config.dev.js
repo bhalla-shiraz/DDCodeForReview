@@ -29,6 +29,7 @@ export default {
       pages: path.resolve(__dirname, 'src/pages'),
       actions: path.resolve(__dirname, 'src/redux/actions'),
       reduxConstants: path.resolve(__dirname, 'src/redux/constants'),
+      reducers: path.resolve(__dirname, 'src/redux/reducers'),
       constants: path.resolve(__dirname, 'src/constants'),
       services: path.resolve(__dirname, 'src/services'),
     },

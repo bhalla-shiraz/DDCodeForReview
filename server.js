@@ -79,24 +79,20 @@ router.get('/rooms/:roomId', function(req, res) {
 })
 
 
-const updateProfile = (user) => {
-   profiles[user.name] = {
-      age: user.age
-   }
+const updateProfile = (data) => {
+   Object.keys(data).map((key) => {
+      console.log("calling", data, data[key], profiles[data.username]);
+      profiles[data.username][key] = data[key]
+   })
 }
-
 
 router.route('/profile/:username')
    .get((req, res) => {
       res.send(profiles[req.params.username])
    })
    .post((req, res) => {
-      updateProfile({
-         name: req.params.username,
-         age: req.body.age,
-         pic: req.body.pic,
-
-      })
+      req.body['username'] = req.params.username
+      updateProfile(req.body)
       console.log('Response:',{message: 'OK!'})
       res.json({message: 'OK!'})
    })

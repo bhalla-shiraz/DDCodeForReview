@@ -4,6 +4,7 @@ import getMembers from '../../services/getMembers'
 
 export const updateRoom = (room) => {
    return (dispatch) => {
+      console.log(room);
       dispatch(updateRoomData(room.id, room.name))
       getMessages(room.id).then((response) => {
          if(response.status == 200) {
@@ -38,20 +39,10 @@ export const sendMessage = (message, user, roomId, roomName) => {
       return (dispatch) => {
          postMessage(message, user, roomId).then((response) => {
             if(response.status == 200) {
-               getMessages(roomId).then((response) => {
-                  if(response.status == 200) {
-                     dispatch(updateRoomMessages(response.data))
-                     getMembers(roomId).then((response) => {
-                        if(response.status == 200) {
-                           dispatch(updateRoomMembers(response.data.users))
-                        } else {
-                           console.log("error");
-                        }
-                     })
-                  } else {
-                     console.log("error");
-                  }
-               })
+               dispatch(updateRoom({
+                  id: roomId,
+                  name: roomName,
+               }))
             } else {
                console.log("error");
             }

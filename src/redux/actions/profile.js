@@ -1,4 +1,5 @@
 import { getProfile } from 'services/profile'
+import { updateProfile } from 'services/profile'
 import {
    FETCHING_PROFILE_INFORMATION,
    UPDATE_PROFILE_INFORMATION,
@@ -12,7 +13,7 @@ export const getProfileInformation = (username) => {
          if(response.status === 200) {
             dispatch(updateProfileData(response.data))
          } else {
-            dispatch(errorFetchingProfileData("error"))
+            dispatch(errorFetchingProfileData())
          }
       })
    }
@@ -27,7 +28,18 @@ const updateProfileData = (data) => ({
    data,
 })
 
-const errorFetchingProfileData = (error) => ({
+const errorFetchingProfileData = () => ({
    type: ERROR_PROFILE_INFORMATION,
-   error
 })
+
+export const updateProfileInformation = (username, data) => {
+      return (dispatch) => {
+         updateProfile(username, data).then((response) => {
+            if(response.status == 200) {
+               dispatch(getProfileInformation(username))
+            } else {
+               console.log("error");
+            }
+         })
+      }
+}

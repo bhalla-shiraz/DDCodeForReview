@@ -5,13 +5,13 @@ import SendButton from './SendButton'
 import {
    sendButtonLabel,
    hintText
-} from '../../../../constants/messageSendPanel'
+} from 'constants/messageSendPanel'
 import {
    ENTER
-} from '../../../../constants/events'
+} from 'constants/events'
 import {
    sendMessage
-} from '../../../../redux/actions/roomDetails'
+} from 'actions/roomDetails'
 
 class MessageSendPanel extends Component {
    sendMessage() {

@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import UserInfoPanel from './UserInfoPanel'
 import RoomList from './RoomList'
-import { updateRoom } from '../../../redux/actions/roomDetails'
+import { updateRoom } from 'actions/roomDetails'
+import { go } from 'actions/navigate'
 import styles from './styles'
 
 class RoomSelectionPanel extends Component {
@@ -33,7 +34,7 @@ class RoomSelectionPanel extends Component {
 
    componentDidMount() {
       this.loadInterval = setInterval(() => this.updateLoginTime(), 60000);
-      this.loadMessages = setInterval(() => this.updateMessages(), 1000);
+      // this.loadMessages = setInterval(() => this.updateMessages(), 1000);
    }
 
    componentWillUnmount () {
@@ -57,7 +58,7 @@ class RoomSelectionPanel extends Component {
       const { timeSinceLoggedIn } = this.state
       return (
          <div style={styles.roomSelectionPanel}>
-            <UserInfoPanel user={user} timeOnline={timeSinceLoggedIn}/>
+            <UserInfoPanel viewProfile={go} user={user} timeOnline={timeSinceLoggedIn}/>
             <RoomList roomList={roomList} selectedRoom={selectedRoom} selectRoom={(event) => this.selectRoom(event)}/>
          </div>
       )
@@ -68,11 +69,12 @@ const mapStateToProps = (state) => ({
    user: state.loginData.user,
    loginTime: state.loginData.time,
    selectedRoom: state.roomDetails.room,
-   roomList: state.roomList
+   roomList: state.roomList,
 })
 
 const mapDispatchToProps = {
-   updateRoom
+   updateRoom,
+   go,
 }
 
 RoomSelectionPanel.propTypes = {

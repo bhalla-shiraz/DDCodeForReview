@@ -8,6 +8,7 @@ export default (
   <Route path="/" component={App}>
      <IndexRoute component={Welcome} />
      <Route path="/Chat" component={ChatPanel}>
+        <Route path="profile" />
      </Route>
   </Route>
 
