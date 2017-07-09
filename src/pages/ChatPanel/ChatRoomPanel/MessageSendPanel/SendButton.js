@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import styles from './styles'
 
 const SendButton = ({label, sendMessage}) => (
@@ -9,4 +9,8 @@ const SendButton = ({label, sendMessage}) => (
       {label}
    </button>)
 
+SendButton.propTypes = {
+   label: PropTypes.string,
+   sendMessage: PropTypes.func,
+}
 export default SendButton

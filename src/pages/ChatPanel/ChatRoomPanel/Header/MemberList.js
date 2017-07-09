@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import styles from './styles'
 
 const MemberListRearrangement = (memberList, user) => {
@@ -21,10 +21,15 @@ const MemberName = (member, user) => (
       <span key={member} style={styles.memberName}>{`, ${member}`}</span>
 )
 
-const MemberList = ({memberList, user}) => (
+const MemberList = ({ memberList, user }) => (
    <div style={styles.memberList}>
       {MemberListRearrangement(memberList, user).map((member) => MemberName(member, user))}
    </div>
 )
+
+MemberList.propTypes = {
+   memberList: PropTypes.array,
+   user: PropTypes.string
+}
 
 export default MemberList

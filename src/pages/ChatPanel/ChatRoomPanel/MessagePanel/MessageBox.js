@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import styles from './styles'
 
 const MessageBox = ({messageData, username}) => {
@@ -16,6 +16,11 @@ const MessageBox = ({messageData, username}) => {
          </div>
       </div>
    )
+}
+
+MessageBox.propTypes = {
+   messageData: PropTypes.array,
+   username: PropTypes.string
 }
 
 export default MessageBox
