@@ -52,9 +52,9 @@ class MessageSendPanel extends Component {
                ref={(elem) => this.message = elem}
                onKeyPress={(event) => this.onKeyPress(event)}
             />
-         <SendButton
-            label={sendButtonLabel}
-            sendMessage={() => this.sendMessage()}/>
+            <SendButton
+               label={sendButtonLabel}
+               sendMessage={() => this.sendMessage()}/>
          </div>
       )
    }

@@ -3,7 +3,7 @@ export default {
       height: '15vh',
    },
    sendButton: {
-      width: '10%',
+      width: '12%',
       height: '6vh',
       margin: '2vh auto',
       color: '#0099FF',
@@ -11,6 +11,7 @@ export default {
       border: 'none',
       fontSize: '1.2vw',
       overflow: 'hidden',
+      float: 'right'
    },
    messageTextField: {
       width: '85%',
@@ -19,5 +20,5 @@ export default {
       margin: '1vw 1vw auto 1vw',
       borderBottom: '2px grey solid',
       overflow: 'auto',
-   }
+   },
 }
