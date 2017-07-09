@@ -16,6 +16,7 @@
     "babel-polyfill": "6.8.0",
     "body-parser": "^1.17.2",
     "bootstrap": "3.3.6",
+    "classnames": "^2.2.5",
     "eslint": "^4.1.1",
     "eslint-config-airbnb-easy": "^1.0.7",
     "jquery": "2.2.3",
