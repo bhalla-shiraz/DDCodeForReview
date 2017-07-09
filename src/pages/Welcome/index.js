@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import styles from './styles.js'
+import cn from 'classnames'
 import JoinButton from './joinButton'
+import * as styles from './styles.css'
 import {
    joinButtonLabel,
    hintText
@@ -34,10 +35,10 @@ class Welcome extends Component {
       const { errorText } = this.state
       return (
          <div
-            style={styles.joinContainer}
+            className={cn(styles.joinContainer)}
             >
             <input
-               style={styles.usernameField}
+               className={cn(styles.usernameField)}
                placeholder={hintText}
                onKeyPress={(event) => this.onKeyPress(event)}
                ref={(elem) => this.username = elem}
@@ -46,7 +47,7 @@ class Welcome extends Component {
             label={joinButtonLabel}
             onClick={() => this.login()}
             />
-         <div style={styles.errorText}>{errorText}</div>
+         <div className={cn(styles.errorText)}>{errorText}</div>
          </div>
       )
    }
