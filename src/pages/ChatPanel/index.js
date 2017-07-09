@@ -1,9 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import styles from './styles.js'
-import {
-   joinButtonLabel
-} from '../../constants/Welcome'
 import RoomSelectionPanel from './RoomSelectionPanel'
 import ChatRoomPanel from './ChatRoomPanel'
 import { fetchRoomList } from '../../redux/actions/roomList'
@@ -38,4 +34,10 @@ const mapDispatchToProps = {
    fetchRoomList,
    go
 }
+
+ChatPanel.propTypes = {
+   fetchRoomList: PropTypes.func,
+   user: PropTypes.string,
+}
+
 export default connect(mapStateToProps, mapDispatchToProps)(ChatPanel)

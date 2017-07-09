@@ -1,18 +1,34 @@
 import { updateRoom } from './roomDetails'
+import {
+   ROOM_LIST_FETCHING,
+   ROOM_LIST_LOADED,
+   ROOM_LIST_FETCHING_ERROR,
+} from 'reduxConstants/roomList'
+import getRooms from 'services/getRooms'
+
 export const fetchRoomList = () => {
-   const roomList = getRoomList()
    return (dispatch) => {
-      dispatch(updateRoomList(roomList))
-      dispatch(updateRoom(roomList[0]))
+      dispatch(roomListFetching())
+      getRooms().then((response) => {
+         if(response.status === 200) {
+            dispatch(roomListUpdate(response.data))
+            dispatch(updateRoom(response.data[0]))
+         } else {
+            dispatch(roomListFetchError('Room List not found'))
+         }
+      })
    }
 }
 
-const getRoomList = (room) => {
+const roomListFetching = () => ({
+   type: ROOM_LIST_FETCHING
+})
 
-   return [{"name":"Tea Chats","id":0},{"name":"Coffee Chats","id":1}]
-}
+const roomListFetchError = () => ({
+   type: ROOM_LIST_FETCHING_ERROR
+})
 
-const updateRoomList = (roomList) => ({
-   type: 'UPDATE_ROOM_LIST',
+const roomListUpdate = (roomList) => ({
+   type: ROOM_LIST_LOADED,
    roomList
 })

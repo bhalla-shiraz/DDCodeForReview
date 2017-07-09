@@ -14,7 +14,7 @@ export const getProfileInformation = (username) => {
          if(response.status === 200) {
             dispatch(updateProfileData(response.data))
          } else {
-            dispatch(errorFetchingProfileData())
+            dispatch(errorFetchingProfileData('Profile information not found'))
          }
       })
    }
@@ -40,7 +40,7 @@ export const updateProfileInformation = (username, data) => {
                dispatch(getProfileInformation(username))
                dispatch(go('/chat'))
             } else {
-               console.log("error");
+               dispatch(errorFetchingProfileData(response.error))
             }
          })
       }

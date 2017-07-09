@@ -48,16 +48,14 @@ class RoomSelectionPanel extends Component {
    selectRoom(newRoom) {
       const { updateRoom } = this.props
       updateRoom({
-         id: newRoom.target.id,
+         id: parseInt(newRoom.target.id),
          name: newRoom.target.innerHTML
       })
    }
 
    render() {
-      // let roomList = ["Business", "Design", "Analytics", "Engineering", "HR", "Operations"]
       const { user, selectedRoom, roomList, go, url } = this.props
       const { timeSinceLoggedIn } = this.state
-      console.log(url);
       return (
          <div style={styles.roomSelectionPanel}>
             {(url && url.includes('profile')) ? <Profile /> : ''}
@@ -72,7 +70,7 @@ const mapStateToProps = (state) => ({
    user: state.loginData.user,
    loginTime: state.loginData.time,
    selectedRoom: state.roomDetails.room,
-   roomList: state.roomList,
+   roomList: state.roomList || [],
    url: state.navigate.path,
 })
 

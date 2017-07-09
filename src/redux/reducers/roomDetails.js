@@ -17,6 +17,10 @@ const roomDetails = (state = '', action) => {
         ...state,
         members: action.roomMembers
      }
+    case 'ROOM_MESSAGES_FETCH_ERROR':
+      return {
+         ...state
+      }
     default:
       return state;
   }

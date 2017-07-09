@@ -7,6 +7,5 @@ export const getProfile = (username) => {
 
 export const updateProfile = (username, data) => {
    const URL = `http://localhost:8080/api/profile/${username}`
-   console.log(data);
    return axios.post(URL, data)
 }

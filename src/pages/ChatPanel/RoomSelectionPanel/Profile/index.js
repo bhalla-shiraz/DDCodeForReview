@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Dialog from 'material-ui/Dialog'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
@@ -47,6 +47,12 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
    updateProfileInformation,
+}
+
+Profile.propTypes = {
+   profile: PropTypes.object,
+   updateProfileInformation: PropTypes.func,
+   username: PropTypes.string
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile)

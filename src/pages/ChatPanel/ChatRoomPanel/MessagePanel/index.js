@@ -39,7 +39,7 @@ class MessagePanel extends Component {
 
 const mapStateToProps = (state) => ({
    messageDataList: state.roomDetails.messages || [],
-   username: state.loginData.user
+   username: state.loginData.user || ''
 })
 
 MessagePanel.propTypes = {

@@ -6,10 +6,9 @@ import styles from './styles'
 
 class ChatRoomPanel extends Component {
    render() {
-      let roomList = ["Business", "Design", "Analytics", "Engineering", "HR", "Operations"]
       return (
          <div style={styles.chatRoomPanel}>
-            <Header channel={'Business'}/>
+            <Header />
             <MessagePanel />
             <MessageSendPanel />
          </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import styles from './styles'
 
 const RoomTab = ({room, selectedRoom, selectRoom}) => {
@@ -16,5 +16,18 @@ const RoomList = ({ roomList, selectedRoom, selectRoom }) => (
       {roomList.map((room) => <RoomTab key={room.id} room={room} selectedRoom={selectedRoom} selectRoom={selectRoom} />)}
    </div>
 )
+
+RoomList.propTypes = {
+   roomList: PropTypes.array,
+   selectedRoom: PropTypes.number,
+   selectRoom: PropTypes.func,
+}
+
+RoomTab.propTypes = {
+   room: PropTypes.object,
+   selectedRoom: PropTypes.number,
+   selectRoom: PropTypes.func,
+
+}
 
 export default RoomList

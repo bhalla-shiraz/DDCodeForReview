@@ -4,7 +4,6 @@ import getMembers from '../../services/getMembers'
 
 export const updateRoom = (room) => {
    return (dispatch) => {
-      console.log(room);
       dispatch(updateRoomData(room.id, room.name))
       getMessages(room.id).then((response) => {
          if(response.status == 200) {
@@ -13,15 +12,21 @@ export const updateRoom = (room) => {
                if(response.status == 200) {
                   dispatch(updateRoomMembers(response.data.users))
                } else {
-                  console.log("error");
+                  roomMessagesFetchError('error getting members')
                }
             })
          } else {
-            console.log("error");
+            roomMessagesFetchError('error getting messages')
          }
       })
    }
 }
+
+const roomMessagesFetchError = (error) => ({
+   type: 'ROOM_MESSAGES_FETCH_ERROR',
+   error,
+})
+
 const updateRoomMessages = (roomMessages) => ({
    type: 'UPDATE_ROOM_MESSAGES',
    roomMessages,
@@ -44,7 +49,7 @@ export const sendMessage = (message, user, roomId, roomName) => {
                   name: roomName,
                }))
             } else {
-               console.log("error");
+               roomMessagesFetchError('error submitting message')
             }
          })
       }
