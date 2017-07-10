@@ -23,8 +23,7 @@ class Profile extends Component {
          />,
        ];
        const { profile } = this.props
-       console.log(profile);
-      return(
+       return(
          <MuiThemeProvider>
             <Dialog
              title="Profile"

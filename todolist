@@ -1,0 +1,21 @@
+TODO list
+1. create mapper for errors
+2. create mapper for time since logged in
+3. create profile page
+4. add emojis to the chat
+5. ability to add a channel
+6. use Door Dash's eslint rules
+
+rules: {
+    'arrow-body-style': 0,
+    'camelcase': 0,
+    'import/no-unresolved': 0,
+    'max-len': 0,
+    'no-param-reassign': 0,
+    'no-underscore-dangle': [2, { 'allowAfterThis': true }],
+    'no-unused-vars': ["error", { "vars": "all", "args": "after-used" }],
+    'react/jsx-no-bind': 0,
+    'react/prefer-stateless-function': 0,
+    'react/sort-comp': 0,
+    'semi': [2, 'never'],
+  },

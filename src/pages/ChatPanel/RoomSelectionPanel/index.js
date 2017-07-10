@@ -35,6 +35,7 @@ class RoomSelectionPanel extends Component {
 
    componentDidMount() {
       this.loadInterval = setInterval(() => this.updateLoginTime(), 60000);
+      // in order to make live chats work - auto fetch messages every second
       // this.loadMessages = setInterval(() => this.updateMessages(), 1000);
    }
 
