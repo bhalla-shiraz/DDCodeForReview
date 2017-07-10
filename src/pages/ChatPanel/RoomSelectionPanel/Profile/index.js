@@ -23,7 +23,7 @@ class Profile extends Component {
          />,
        ];
        const { profile } = this.props
-
+       console.log(profile);
       return(
          <MuiThemeProvider>
             <Dialog
@@ -32,7 +32,9 @@ class Profile extends Component {
              modal={false}
              open
             >
-            <div>{JSON.stringify(profile)}</div>
+            <div>
+               {Object.keys(profile.data).map((attribute) => <div>{attribute} :  {profile.data[attribute]}</div>)}
+            </div>
             {'Want To save?'}
            </ Dialog>
           </ MuiThemeProvider>

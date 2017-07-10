@@ -7,7 +7,7 @@ export const login = (user) => {
       dispatch(go('/Chat'))
       dispatch(getProfileInformation(user))
       dispatch(updateProfileInformation(user, {
-         umar:'600',
+         age:'600',
          pic: '123'
       }))
    }

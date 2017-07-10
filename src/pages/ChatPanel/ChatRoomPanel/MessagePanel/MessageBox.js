@@ -19,7 +19,7 @@ const MessageBox = ({messageData, username}) => {
 }
 
 MessageBox.propTypes = {
-   messageData: PropTypes.array,
+   messageData: PropTypes.object,
    username: PropTypes.string
 }
 

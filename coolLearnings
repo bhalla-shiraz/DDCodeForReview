@@ -92,3 +92,60 @@ MyComponent.propTypes = {
 
 
 https://github.com/css-modules/webpack-demo
+
+function Emitter() {
+ this.name = ''
+ this.callback = () => ({})
+
+ this.subscribe = (name, callback) => {
+  this.name = name
+  this.callback = callback
+  this.list.push({
+  	name,
+    callback
+  })
+  return this
+ }
+ this.emit = (name, foo, bar) => {
+ 	this.list.forEach((sub) => {
+   sub.callback(foo, bar)
+  })
+ }
+ this.release = () => {
+ 	this.list = this.list.filter((item) => item.name !== this.name)
+ }
+}
+
+Emitter.prototype.list = []
+
+
+const emitter = new Emitter()
+
+const sub1 = emitter.subscribe('event_name', (foo, bar) => {
+	console.log('sub1', foo, bar)
+})
+
+const sub2 = emitter.subscribe('other_name', (foo, bar) => {
+	console.log('sub2', foo, bar)
+})
+
+emitter.emit('event_name', 'foo', 'bar')
+
+sub1.release()
+
+
+emitter.emit('event_name', 'foo', 'bar')
+
+
+=================
+Reduce
+
+let testArray = ['a', 'b', 'c' , 'm', 'd' , 'n', 'e']
+
+let result = testArray.reduce((result, item) => {
+	return (item > result) ? item : result
+}, '0')
+
+console.log(result)
+
+============

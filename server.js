@@ -82,6 +82,9 @@ router.get('/rooms/:roomId', function(req, res) {
 const updateProfile = (data) => {
    Object.keys(data).map((key) => {
       console.log("calling", data, data[key], profiles[data.username]);
+      if(!profiles[data.username]) {
+         profiles[data.username] = {}
+      }
       profiles[data.username][key] = data[key]
    })
 }
