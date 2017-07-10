@@ -6,7 +6,7 @@ const loginData = (state = '', action) => {
          time: action.loginTime
       }
     default:
-      return state;
+      return state
   }
 }
 

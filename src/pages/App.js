@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, {PropTypes} from 'react'
 
 class App extends React.Component {
   render() {
@@ -6,7 +6,7 @@ class App extends React.Component {
       <div>
          {this.props.children}
       </div>
-    );
+    )
   }
 }
 

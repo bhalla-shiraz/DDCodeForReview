@@ -22,7 +22,7 @@ const roomDetails = (state = '', action) => {
          ...state
       }
     default:
-      return state;
+      return state
   }
 }
 

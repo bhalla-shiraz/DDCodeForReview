@@ -7,7 +7,7 @@ const roomList = (state = '', action) => {
    case ROOM_LIST_LOADED:
      return action.roomList
     default:
-      return state;
+      return state
   }
 }
 

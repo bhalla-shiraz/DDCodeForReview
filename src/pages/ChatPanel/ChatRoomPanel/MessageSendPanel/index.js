@@ -18,7 +18,7 @@ class MessageSendPanel extends Component {
       const { user, roomId, sendMessage, roomName } = this.props
       const message = this.message.value
       if(message !== '') {
-         sendMessage(message, user, roomId, roomName);
+         sendMessage(message, user, roomId, roomName)
          this.message.value = ''
       }
    }

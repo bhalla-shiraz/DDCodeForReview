@@ -1,5 +1,5 @@
-import {combineReducers} from 'redux';
-import loginData from './loginData';
+import {combineReducers} from 'redux'
+import loginData from './loginData'
 import navigate from './navigate'
 import roomDetails from './roomDetails'
 import roomList from './roomList'
@@ -11,6 +11,6 @@ const rootReducer = combineReducers({
   roomDetails,
   roomList,
   profile,
-});
+})
 
-export default rootReducer;
+export default rootReducer

@@ -21,7 +21,7 @@ class Profile extends Component {
            keyboardFocused={true}
            onClick={() => this.update()}
          />,
-       ];
+       ]
        const { profile } = this.props
        return(
          <MuiThemeProvider>

@@ -9,19 +9,19 @@ class MessagePanel extends Component {
       super(props)
    }
    scrollToBottom() {
-     const node = ReactDOM.findDOMNode(this.panel);
+     const node = ReactDOM.findDOMNode(this.panel)
      node.scrollTop = node.scrollHeight
-     node.scrollIntoView({ behavior: "smooth" });
+     node.scrollIntoView({ behavior: "smooth" })
    }
 
    componentDidMount() {
-     this.scrollToBottom();
+     this.scrollToBottom()
    }
    shouldComponentUpdate(prevProps) {
       return !(JSON.stringify(prevProps.messageDataList) === JSON.stringify(this.props.messageDataList))
    }
    componentDidUpdate() {
-     this.scrollToBottom();
+     this.scrollToBottom()
    }
    render() {
       const { messageDataList, username } = this.props
