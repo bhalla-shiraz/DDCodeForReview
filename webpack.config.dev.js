@@ -32,6 +32,8 @@ export default {
       reducers: path.resolve(__dirname, 'src/redux/reducers'),
       constants: path.resolve(__dirname, 'src/constants'),
       services: path.resolve(__dirname, 'src/services'),
+      utils: path.resolve(__dirname, 'src/utils'),
+      Assets: path.resolve(__dirname, 'src/Assets'),
     },
     extensions: ['', '.js', '.jsx']
    },

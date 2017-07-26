@@ -1,6 +1,7 @@
 import postMessage from '../../services/postMessage'
 import getMessages from '../../services/getMessages'
 import getMembers from '../../services/getMembers'
+import postReaction from '../../services/postReaction'
 
 export const updateRoom = (room) => {
    return (dispatch) => {
@@ -50,6 +51,21 @@ export const sendMessage = (message, user, roomId, roomName) => {
                }))
             } else {
                roomMessagesFetchError('error submitting message')
+            }
+         })
+      }
+}
+
+export const updateReaction = (roomId, messageId, reaction, roomName) => {
+      return (dispatch) => {
+         postReaction(roomId, messageId, reaction).then((response) => {
+            if(response.status == 200) {
+               dispatch(updateRoom({
+                  id: roomId,
+                  name: roomName,
+               }))
+            } else {
+               roomMessagesFetchError('error updating reaction')
             }
          })
       }

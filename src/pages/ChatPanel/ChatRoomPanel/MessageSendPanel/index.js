@@ -36,11 +36,8 @@ class MessageSendPanel extends Component {
                this.sendMessage()
             }
          }
-
          event.preventDefault()
       }
-
-
    }
 
    render() {

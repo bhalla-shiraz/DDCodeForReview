@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import MessageBox from './MessageBox'
 import styles from './styles'
+import { updateReaction } from 'actions/roomDetails'
+import { SMILEY } from 'constants/emoticons'
 
 class MessagePanel extends Component {
    constructor(props) {
@@ -23,6 +25,13 @@ class MessagePanel extends Component {
    componentDidUpdate() {
      this.scrollToBottom()
    }
+
+   updateReactionOnClick(id, emoticon) {
+      const { updateReaction, roomId, roomName } = this.props
+      let newEmoticon = (emoticon) ? null : SMILEY
+      updateReaction(roomId, id, newEmoticon, roomName)
+   }
+
    render() {
       const { messageDataList, username } = this.props
       return (
@@ -31,7 +40,12 @@ class MessagePanel extends Component {
             ref={(elem) => this.panel = elem}
             >
             {messageDataList.map((messageData, index) =>
-               <MessageBox key={index} messageData={messageData} username={username} />)}
+               <MessageBox
+                  key={index}
+                  messageData={messageData}
+                  username={username}
+                  updateReaction={(id, emoticon) => this.updateReactionOnClick(id, emoticon)}
+               />)}
          </div>
       )
    }
@@ -39,11 +53,20 @@ class MessagePanel extends Component {
 
 const mapStateToProps = (state) => ({
    messageDataList: state.roomDetails.messages || [],
-   username: state.loginData.user || ''
+   username: state.loginData.user || '',
+   roomId: state.roomDetails.room,
+   roomName: state.roomDetails.roomName,
 })
+
+const mapDispatchToProps = {
+   updateReaction,
+}
 
 MessagePanel.propTypes = {
    messageDataList: PropTypes.array.isRequired,
    username: PropTypes.string.isRequired,
+   updateReaction: PropTypes.func.isRequired,
+   roomId: PropTypes.number,
+   roomName: PropTypes.string,
 }
-export default connect(mapStateToProps, () => ({}))(MessagePanel)
+export default connect(mapStateToProps, mapDispatchToProps)(MessagePanel)

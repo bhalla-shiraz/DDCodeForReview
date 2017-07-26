@@ -1,4 +1,9 @@
-const loginData = (state = '', action) => {
+const initialState = {
+   user: '',
+   time: ''
+}
+
+const loginData = (state = initialState, action) => {
   switch (action.type) {
     case 'UPDATE_USER':
       return {

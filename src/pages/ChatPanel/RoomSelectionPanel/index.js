@@ -81,7 +81,10 @@ const mapDispatchToProps = {
 }
 
 RoomSelectionPanel.propTypes = {
-   loginTime: PropTypes.number,
+   loginTime: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+   ]),
    updateRoom: PropTypes.func,
    user: PropTypes.string,
    roomList: PropTypes.array,
